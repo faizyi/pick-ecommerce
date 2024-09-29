@@ -1,5 +1,5 @@
 "use client"
-import { Layout, Divider } from 'antd';
+import { Layout, Divider } from "antd";
 import Link from 'next/link';
 const { Footer : AntFooter } = Layout;
 export default function Footer() {

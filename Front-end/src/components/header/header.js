@@ -3,6 +3,7 @@ import { FaShoppingCart, FaUserAlt } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
 import Link from "next/link";
 import { useState } from 'react';
+import Navigation from '../navigation';
 
 export default function Header() {
   const [visible, setVisible] = useState(false);
@@ -23,7 +24,7 @@ export default function Header() {
             <Link href="/" className="hover:text-blue-600 transition duration-300 ease-in-out">Home</Link>
             <Link href="/shop" className="hover:text-blue-600 transition duration-300 ease-in-out">Shop</Link>
           </nav>
-          <button className="bg-gray-100 py-2 px-4 rounded-md hover:bg-gray-200 transition duration-300 ease-in-out">All Categories</button>
+          <Navigation/>
           <div className="relative">
             <input 
               type="text"
