@@ -1,23 +1,43 @@
+"use client"
 import Link from "next/link";
-import { FaPlus, FaList } from "react-icons/fa";
-
+import { FaPlus, FaList, FaSignOutAlt } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+import { useSelector, useDispatch } from "react-redux";
+import { showSidebar } from "@/redux/openSidebar/OSSlice";
 const AdminSidebar = () => {
+    const dispatch = useDispatch();
+    const {isOpenSidebar} = useSelector((state) => state.sidebar);
+    const pathname = usePathname();
     return (
-        <aside className="fixed top-0 left-0 h-screen w-64 pt-20 p-5 transition-transform bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+        <aside className={`${isOpenSidebar ? "" : "hidden sm:block"} fixed top-0 left-0 h-screen z-40 w-64 pt-20 p-5 transition-transform bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700`}>
             <div className="bg-white dark:bg-gray-800">
                 <ul className="space-y-2 font-medium">
                     <li>
-                        <Link href="/addproduct" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <Link href="/addproduct" className={`${pathname === "/addproduct" ? "bg-gray-100 dark:bg-gray-700" : ""}
+                        flex items-center p-2 text-gray-900 rounded-lg dark:text-white
+                        hover:bg-gray-100 dark:hover:bg-gray-700`}>
                             <FaPlus className="w-5 h-5" />
-                            <span className="ms-3">Add Product</span>
+                            <span onClick={() => dispatch(showSidebar())} className="ms-3">Add Product</span>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/productslist" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <FaList className="w-5 h-5" />
-                            <span className="ms-3">Products List</span>
+                        <Link href="/productslist" className={`${pathname === "/productslist" ? "bg-gray-100 dark:bg-gray-700" : ""}
+                        flex items-center p-2 text-gray-900 rounded-lg dark:text-white
+                        hover:bg-gray-100 dark:hover:bg-gray-700
+                        `}>
+                        <FaList className="w-5 h-5" />
+                            <span onClick={() => dispatch(showSidebar())} className="ms-3">Products List</span>
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/productslist" className={`
+                        flex items-center p-2 text-gray-900 rounded-lg dark:text-white
+                        hover:bg-gray-100 dark:hover:bg-gray-700
+                        `}>
+                            <FaSignOutAlt className="w-5 h-5" />
+                            <span className="ms-3">Logout</span>
+                        </Link>
+                    </li>,
                 </ul>
             </div>
         </aside>

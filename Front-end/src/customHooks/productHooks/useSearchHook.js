@@ -5,29 +5,43 @@ import { useDispatch} from "react-redux";
 import { setProducts } from '@/redux/product/productSlice';
 export default function useSearchHook() {
     const dispatch = useDispatch();
-    const {products} = useGetProduct();
+    const { allProducts, updateAllProducts } = useGetProduct();
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [query, setQuery] = useState('');
     useEffect(() => {
-        setFilteredProducts(products)
-        dispatch(setProducts(products))
-    }, [products]);
+        if(allProducts){
+            dispatch(setProducts(allProducts))
+        }
+    }, [allProducts]);
+
+    const updateFilteredProducts = (updatedProducts) => {
+        updateAllProducts(updatedProducts);
+        if(query.length > 0){
+            const updatedProduct = updatedProducts.filter((product) =>
+            product.productName.toLowerCase().includes(query.toLowerCase()))
+            dispatch(setProducts(updatedProduct));
+        }else{
+            dispatch(setProducts(updatedProducts));
+        }
+    };
+    
     const handleSearch = (event) => {
         const value = event.target.value.toLowerCase();
         setQuery(value);
         if(value.length > 0){
-            const serachProduct = products ? products.filter(product => product.productName.toLowerCase().includes(value.toLowerCase()))
+            const serachProduct = allProducts ? allProducts.filter(product => product.productName.toLowerCase().includes(value.toLowerCase()))
             : [];
             dispatch(setProducts(serachProduct));
-            setFilteredProducts(serachProduct);
+            // setFilteredProducts(serachProduct);
         }else{
-            setFilteredProducts(products);
-            dispatch(setProducts(products));
+            // setFilteredProducts(products);
+            dispatch(setProducts(allProducts));
         }
     }
   return {
     filteredProducts,
     query,
-    handleSearch
+    handleSearch,
+    updateFilteredProducts
   }
 }

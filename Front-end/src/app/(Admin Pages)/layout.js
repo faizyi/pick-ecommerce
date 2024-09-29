@@ -1,4 +1,5 @@
 "use client"
+import "./admin.css"
 import React from 'react'
 import AdminPage from './admin/page'
 import { Provider } from 'react-redux'

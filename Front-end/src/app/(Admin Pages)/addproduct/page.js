@@ -6,135 +6,153 @@ import { useSelector } from 'react-redux';
 import Loader from '@/components/loader/loader';
 
 export default function AddProduct() {
-  const { isLoading } = useSelector((state) => state.loader);
+  const { isLoading  } = useSelector((state) => state.loader);
   const { product, handleChange, handleSubmit, handleImageChange } = addproductHook();
 
   return (
-    <div className="flex items-center justify-center mt-14 bg-gray-100 p-6">
+    <div className="flex items-center justify-center mt-5 sm:ml-64 py-12 px-4 sm:px-6 lg:px-8">
       {isLoading ? (
-        <div className="flex justify-center items-center ml-80 mt-60">
+        <div className="flex justify-center flex-col items-center mt-64">
           <Loader />
+          <p>Product is being added.....</p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="p-8 space-y-5 bg-white rounded-lg shadow-md w-[70%] ml-64">
-          <h2 className="text-2xl font-bold text-center text-gray-700">Add Product</h2>
-
-          <div>
-            <label className="block mb-1 text-sm font-medium text-gray-700">Product Name</label>
-            <input
-              type="text"
-              name="productName"
-              value={product.productName}
-              onChange={handleChange}
-              required
-              className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-              placeholder="Enter product name"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-1 text-sm font-medium text-gray-700">Price</label>
-            <div className="grid grid-cols-3 gap-4">
+        <div className="w-full max-w-full sm:max-w-4xl space-y-8 bg-white rounded-lg shadow-lg">
+          <div className="p-8 bg-white rounded-lg shadow-md">
+            <h2 className="text-3xl font-extrabold text-gray-900 text-center">Add New Product</h2>
+            <p className="mt-2 text-center text-sm text-gray-600">
+              Fill in the details to add a new product to your inventory.
+            </p>
+            <form onSubmit={handleSubmit} className="space-y-6 mt-6">
               <div>
+                <label className="block text-sm font-medium text-gray-700">Product Name</label>
                 <input
-                  type="number"
-                  name="price.op"
-                  value={product.price.op}
+                  type="text"
+                  name="productName"
+                  value={product.productName}
                   onChange={handleChange}
                   required
-                  className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                  placeholder="Original Price"
+                  className="capitalize mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  placeholder="Enter product name"
                 />
               </div>
+
               <div>
+                <label className="block text-sm font-medium text-gray-700">Price</label>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div>
+                    <input
+                      type="number"
+                      name="price.op"
+                      value={product.price.op}
+                      onChange={handleChange}
+                      required
+                      className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      placeholder="Original Price"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      name="price.cost"
+                      value={product.price.cost}
+                      onChange={handleChange}
+                      required
+                      className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      placeholder="Cost Price"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      name="price.discount"
+                      value={product.price.discount}
+                      onChange={handleChange}
+                      required
+                      className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      placeholder="Discount"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Category</label>
                 <input
-                  type="number"
-                  name="price.cost"
-                  value={product.price.cost}
+                  type="text"
+                  name="category"
+                  value={product.category}
                   onChange={handleChange}
                   required
-                  className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                  placeholder="Cost Price"
+                  className="capitalize mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  placeholder="Enter category"
                 />
               </div>
+
               <div>
+                <label className="block text-sm font-medium text-gray-700">Subcategory</label>
                 <input
-                  type="number"
-                  name="price.discount"
-                  value={product.price.discount}
+                  type="text"
+                  name="subcategory"
+                  value={product.subcategory}
                   onChange={handleChange}
                   required
-                  className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                  placeholder="Discount"
+                  className="capitalize mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  placeholder="Enter subcategory"
                 />
               </div>
-            </div>
-          </div>
 
-          <div>
-            <label className="block mb-1 text-sm font-medium text-gray-700">Category</label>
-            <input
-              type="text"
-              name="category"
-              value={product.category}
-              onChange={handleChange}
-              required
-              className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-              placeholder="Enter category"
-            />
-          </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Product Image</label>
+                <ProductImage handleImageChange={handleImageChange} />
+                {product.image && (
+                  <div className="mt-4">
+                    <img
+                      src={URL.createObjectURL(product.image)}
+                      alt="Product Preview"
+                      className="h-32 w-32 object-cover rounded-lg shadow-md"
+                    />
+                  </div>
+                )}
+              </div>
 
-          <div>
-            <label className="block mb-1 text-sm font-medium text-gray-700">Subcategory</label>
-            <input
-              type="text"
-              name="subcategory"
-              value={product.subcategory}
-              onChange={handleChange}
-              required
-              className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-              placeholder="Enter subcategory"
-            />
-          </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Description</label>
+                <textarea
+                  name="description"
+                  value={product.description}
+                  onChange={handleChange}
+                  required
+                  className="capitalize mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  rows="4"
+                  placeholder="Enter product description"
+                ></textarea>
+              </div>
 
-          <div>
-            <label className="block mb-1 text-sm font-medium text-gray-700">Product Image</label>
-            <ProductImage handleImageChange={handleImageChange} />
-          </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Quantity</label>
+                <input
+                  type="number"
+                  name="quantity"
+                  value={product.quantity}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  placeholder="Enter quantity"
+                />
+              </div>
 
-          <div>
-            <label className="block mb-1 text-sm font-medium text-gray-700">Description</label>
-            <textarea
-              name="description"
-              value={product.description}
-              onChange={handleChange}
-              required
-              className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-              rows="4"
-              placeholder="Enter product description"
-            ></textarea>
+              <div>
+                <button
+                  type="submit"
+                  className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                >
+                  {isLoading ? 'Adding...' : 'Add Product'}
+                </button>
+              </div>
+            </form>
           </div>
-
-          <div>
-            <label className="block mb-1 text-sm font-medium text-gray-700">Quantity</label>
-            <input
-              type="number"
-              name="quantity"
-              value={product.quantity}
-              onChange={handleChange}
-              required
-              className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-              placeholder="Enter quantity"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full py-2 mt-4 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300"
-          >
-            Add Product
-          </button>
-        </form>
+        </div>
       )}
     </div>
   );

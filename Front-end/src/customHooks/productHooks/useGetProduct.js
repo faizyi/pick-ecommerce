@@ -3,9 +3,10 @@ import { getProducts } from "@/services/products/products.services";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { showLoader, hideLoader } from "../../redux/loader/loaderSlice";
+import { setProducts  } from "@/redux/product/productSlice";
 export default function useGetProduct() {
   const dispatch = useDispatch();
-  const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
    const cacheKey = '/getProducts'
   useEffect(()=>{
     const fetchProduct = async () => {
@@ -15,14 +16,16 @@ export default function useGetProduct() {
             const cacheResponse = await cache.match(cacheKey);
             if(cacheResponse) {
                 const cacheData = await cacheResponse.json();
-                setProducts(cacheData);
+                setAllProducts(cacheData);
+                // dispatch(setProducts(cacheData));
             }else{
                 const result = await getProducts();
                 if (result.status === 200) {
                     dispatch(hideLoader());
                     const data = result.data.data;
                     await cache.put(cacheKey, new Response(JSON.stringify(data)));
-                    setProducts(data);
+                    setAllProducts(data);
+                    // dispatch(setProducts(data));
                 }
             }
           } catch (error) {
@@ -33,9 +36,15 @@ export default function useGetProduct() {
     }
 
     fetchProduct();
-  },[])
+  },[ ])
+
+    // Function to update the product list
+    const updateAllProducts = (updatedProducts) => {
+      setAllProducts(updatedProducts); // Update the allProducts state when products are edited
+    };
 
   return {
-    products,
+    allProducts,
+    updateAllProducts,
   };
 }

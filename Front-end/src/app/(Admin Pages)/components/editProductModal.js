@@ -1,5 +1,5 @@
 import editModalHook from "@/customHooks/productHooks/editModalHook";
-export default function EditProduct({showModal, handleCloseClick, handleSaveClick}) {
+export default function EditProductModal({showModal, handleCloseClick, handleSaveClick}) {
     const {formData, handleChange} = editModalHook();
     const handleSubmit = (e)=>{
         e.preventDefault();

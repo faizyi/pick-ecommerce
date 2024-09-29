@@ -7,11 +7,12 @@ export default function editModalHook() {
       productName: '',
       price: {
         op: '',
-        discount: ''
+        discount: '',
+        cost: '',
       },
       category: '',
       subcategory: '',
-      // productImage: '',
+      productImage: '',
       description: '',
       quantity: ""
       });
@@ -24,15 +25,29 @@ export default function editModalHook() {
             category: isEditProduct.category || "",
             subcategory: isEditProduct.subcategory || "",
             description: isEditProduct.description || "",
+            productImage: isEditProduct.productImage || "",
             price: {
               op: isEditProduct.price?.op || "",
-              discount: isEditProduct.price?.discount || ""
+              discount: isEditProduct.price?.discount || "",
+              cost: isEditProduct.price?.cost || "",
             }
           });
         }
       }, [isEditProduct]);
       const handleChange = (e)=>{
-        setFormData({...formData, [e.target.name]: e.target.value})
+        const { name, value } = e.target;
+        if (name.includes("price.")) {
+          const priceKey = name.split(".")[1];
+          setFormData((prevState) => ({
+            ...prevState,
+            price: {
+              ...prevState.price,
+              [priceKey]: value
+            }
+          }));
+        } else {
+          setFormData({ ...formData, [name]: value });
+        }
       }
   return {
     formData,
