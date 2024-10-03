@@ -7,38 +7,41 @@ import Loader from '@/components/loader/loader';
 
 export default function AddProduct() {
   const { isLoading  } = useSelector((state) => state.loader);
+  const { bgP, color } = useSelector((state) => state.mode);
   const { product, handleChange, handleSubmit, handleImageChange } = addproductHook();
-
   return (
-    <div className="flex items-center justify-center mt-5 sm:ml-64 py-12 px-4 sm:px-6 lg:px-8">
+    <div className={`${bgP === "slate-950" ? "bg-slate-950" : "bg-gray-200"}
+    flex items-center justify-center mt-5 sm:ml-64 py-12 px-4 sm:px-6 lg:px-8`}>
       {isLoading ? (
         <div className="flex justify-center flex-col items-center mt-64">
           <Loader />
-          <p>Product is being added.....</p>
+          <p className={`text-${color}`}>Product is being added.....</p>
         </div>
       ) : (
-        <div className="w-full max-w-full sm:max-w-4xl space-y-8 bg-white rounded-lg shadow-lg">
-          <div className="p-8 bg-white rounded-lg shadow-md">
-            <h2 className="text-3xl font-extrabold text-gray-900 text-center">Add New Product</h2>
-            <p className="mt-2 text-center text-sm text-gray-600">
+        <div className="w-full max-w-full sm:max-w-4xl space-y-8 
+        rounded-lg shadow-lg">
+          <div className={`p-8 bg-${bgP} 
+          ${bgP === "slate-950" ? "border border-gray-300" : "shadow-lg"} rounded-lg text-${color}`}>
+            <h2 className={`text-3xl font-extrabold text-center`}>Add New Product</h2>
+            <p className="mt-2 text-center text-sm">
               Fill in the details to add a new product to your inventory.
             </p>
             <form onSubmit={handleSubmit} className="space-y-6 mt-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700">Product Name</label>
+                <label className="block text-sm font-medium">Product Name</label>
                 <input
                   type="text"
                   name="productName"
                   value={product.productName}
                   onChange={handleChange}
                   required
-                  className="capitalize mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className={`bg-${bgP} capitalize mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
                   placeholder="Enter product name"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">Price</label>
+                <label className="block text-sm font-medium">Price</label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <input
@@ -47,7 +50,7 @@ export default function AddProduct() {
                       value={product.price.op}
                       onChange={handleChange}
                       required
-                      className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      className={`bg-${bgP} mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
                       placeholder="Original Price"
                     />
                   </div>
@@ -58,7 +61,7 @@ export default function AddProduct() {
                       value={product.price.cost}
                       onChange={handleChange}
                       required
-                      className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      className={`bg-${bgP} mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
                       placeholder="Cost Price"
                     />
                   </div>
@@ -69,7 +72,7 @@ export default function AddProduct() {
                       value={product.price.discount}
                       onChange={handleChange}
                       required
-                      className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      className={`bg-${bgP} mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
                       placeholder="Discount"
                     />
                   </div>
@@ -77,33 +80,33 @@ export default function AddProduct() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">Category</label>
+                <label className="block text-sm font-medium">Category</label>
                 <input
                   type="text"
                   name="category"
                   value={product.category}
                   onChange={handleChange}
                   required
-                  className="capitalize mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className={`capitalize bg-${bgP} mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
                   placeholder="Enter category"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">Subcategory</label>
+                <label className="block text-sm font-medium">Subcategory</label>
                 <input
                   type="text"
                   name="subcategory"
                   value={product.subcategory}
                   onChange={handleChange}
                   required
-                  className="capitalize mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className={`capitalize bg-${bgP} mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
                   placeholder="Enter subcategory"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">Product Image</label>
+                <label className="block text-sm font-medium">Product Image</label>
                 <ProductImage handleImageChange={handleImageChange} />
                 {product.image && (
                   <div className="mt-4">
@@ -117,27 +120,27 @@ export default function AddProduct() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">Description</label>
+                <label className="block text-sm font-medium">Description</label>
                 <textarea
                   name="description"
                   value={product.description}
                   onChange={handleChange}
                   required
-                  className="capitalize mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className={`capitalize bg-${bgP} mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
                   rows="4"
                   placeholder="Enter product description"
                 ></textarea>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">Quantity</label>
+                <label className="block text-sm font-medium">Quantity</label>
                 <input
                   type="number"
                   name="quantity"
                   value={product.quantity}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className={`bg-${bgP} mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
                   placeholder="Enter quantity"
                 />
               </div>

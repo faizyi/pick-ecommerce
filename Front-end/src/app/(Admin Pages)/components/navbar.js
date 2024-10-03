@@ -1,16 +1,18 @@
 "use client"; // Ensure this is at the top if you're using Next.js or similar
 import React, { useState } from 'react';
-import { FaUserCircle, FaBars } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+import { FaUserCircle, FaBars, FaMoon, FaSun } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
 import { showSidebar,} from '@/redux/openSidebar/OSSlice';
+import { toogleMode,} from '@/redux/mode/modeSlice';
 const Navbar = () => {
     const dispatch = useDispatch();
+    const { theme, bg,} = useSelector((state) => state.mode);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const handleClick = () => {
         setDropdownOpen(!dropdownOpen);
     };
     return (
-        <nav className="fixed top-0 z-50 w-full border-b dark:bg-gray-800 dark:border-gray-700">
+        <header className={`fixed top-0 z-50 w-full border-b bg-${bg} dark:border-gray-700`}>
             <div className="px-3 py-3 lg:px-5 lg:pl-3">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center">
@@ -25,7 +27,11 @@ const Navbar = () => {
                             <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Pick.com</span>
                         </a>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-2">
+                        <div>
+                            <span onClick={() => dispatch(toogleMode())} 
+                            className="text-2xl cursor-pointer text-gray-700 dark:text-gray-300">{theme}</span>
+                        </div>
                         <div className="cursor-pointer flex items-center ms-3 relative" onClick={handleClick}>
                         <p className="mr-2 font-bold text-sm text-gray-900 dark:text-white">Neil Sims</p>
                             <button
@@ -52,7 +58,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-        </nav>
+        </header>
     );
 };
 

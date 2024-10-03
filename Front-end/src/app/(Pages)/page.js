@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <div>
       {/* <Carousel/> */}
-      <Tshirts/>
-      <Shoes/>
+      {/* <Tshirts/> */}
+      {/* <Shoes/> */}
       {/* <Footer/> */}
     </div>
   )

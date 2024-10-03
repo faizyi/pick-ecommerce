@@ -4,15 +4,21 @@ import React from 'react'
 import AdminPage from './admin/page'
 import { Provider } from 'react-redux'
 import {store} from "../../../src/redux/configStore"
+import { useSelector } from "react-redux"
 export default function Pageslayout({ children }) {
   return (
     <Provider store={store}>
-    <div className=''>
-      <AdminPage/>
-      <div>
-        {children}
-      </div>
-    </div>
-    </Provider>
+    <LayoutContent>
+      <AdminPage />
+      <div className="">{children}</div>
+    </LayoutContent>
+  </Provider>
   )
+}
+
+function LayoutContent({ children }) {
+  const { bg, bgP } = useSelector((state) => state.mode);
+  return <div
+  className={`${bgP === "slate-950" ? "bg-slate-950 min-h-screen" : "bg-gray-200 h-screen"}`}
+  >{children}</div>;
 }

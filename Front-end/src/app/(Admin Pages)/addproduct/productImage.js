@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import { Image, Upload } from 'antd';
+import { useSelector } from 'react-redux';
 const getBase64 = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -10,6 +11,7 @@ const getBase64 = (file) =>
       reader.onerror = (error) => reject(error);
     });
 export default function ProductImage({handleImageChange}) {
+  const { bgP, color } = useSelector((state) => state.mode);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [fileList, setFileList] = useState([
@@ -55,11 +57,12 @@ export default function ProductImage({handleImageChange}) {
   );
   return (
     <>
-    <Upload
+    <Upload 
       listType="picture-card"
       fileList={fileList}
       onPreview={handlePreview}
       onChange={handleChange}
+      className={`text-${color} hover:text-${bgP} cursor-pointer`}
     >
       {fileList.length >= 5 ? null : uploadButton}
     </Upload>

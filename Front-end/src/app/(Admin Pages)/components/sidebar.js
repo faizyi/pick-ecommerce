@@ -7,10 +7,11 @@ import { showSidebar } from "@/redux/openSidebar/OSSlice";
 const AdminSidebar = () => {
     const dispatch = useDispatch();
     const {isOpenSidebar} = useSelector((state) => state.sidebar);
+    const { theme, bg, color } = useSelector((state) => state.mode);
     const pathname = usePathname();
     return (
-        <aside className={`${isOpenSidebar ? "" : "hidden sm:block"} fixed top-0 left-0 h-screen z-40 w-64 pt-20 p-5 transition-transform bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700`}>
-            <div className="bg-white dark:bg-gray-800">
+        <aside className={`${isOpenSidebar ? "" : "hidden sm:block"} fixed top-0 left-0 h-screen z-40 w-64 pt-20 p-5 transition-transform border-r border-gray-200 bg-${bg} dark:border-gray-700`}>
+            <div className={`dark:bg-${bg}`}>
                 <ul className="space-y-2 font-medium">
                     <li>
                         <Link href="/addproduct" className={`${pathname === "/addproduct" ? "bg-gray-100 dark:bg-gray-700" : ""}
