@@ -1,6 +1,7 @@
 import { axiosInstance } from "@/axios/axios"
 
 export const addProduct = async(data) => {
+    console.log(data)
     try {
         const res = await axiosInstance.post("/productCreate", data);
         if(res.status === 200){

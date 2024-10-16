@@ -43,6 +43,7 @@ export default function addproductHook() {
       };
       const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(product.productImage)
         dispatch(showLoader());
         try {
           const result = await addProduct(product);

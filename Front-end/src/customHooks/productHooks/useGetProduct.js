@@ -10,7 +10,7 @@ export default function useGetProduct() {
    const cacheKey = '/getProducts'
   useEffect(()=>{
     const fetchProduct = async () => {
-        dispatch(showLoader());
+        // dispatch(showLoader());
         try {
             const cache = await caches.open('product-cache');
             const cacheResponse = await cache.match(cacheKey);
@@ -30,9 +30,10 @@ export default function useGetProduct() {
             }
           } catch (error) {
             console.error(error);
-          } finally {
-            dispatch(hideLoader());
           } 
+          // finally {
+          //   dispatch(hideLoader());
+          // } 
     }
 
     fetchProduct();

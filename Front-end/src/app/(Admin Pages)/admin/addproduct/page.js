@@ -10,7 +10,8 @@ export default function AddProduct() {
   const { bgP, color } = useSelector((state) => state.mode);
   const { product, handleChange, handleSubmit, handleImageChange } = addproductHook();
   return (
-    <div className={`${bgP === "slate-950" ? "bg-slate-950" : "bg-gray-200"}
+    <div className={`
+      ${bgP === "slate-950" ? "bg-slate-950" : "bg-gray-200"}
     flex items-center justify-center mt-5 sm:ml-64 py-12 px-4 sm:px-6 lg:px-8`}>
       {isLoading ? (
         <div className="flex justify-center flex-col items-center mt-64">
@@ -20,7 +21,7 @@ export default function AddProduct() {
       ) : (
         <div className="w-full max-w-full sm:max-w-4xl space-y-8 
         rounded-lg shadow-lg">
-          <div className={`p-8 bg-${bgP} 
+          <div className={`p-10 bg-${bgP} 
           ${bgP === "slate-950" ? "border border-gray-300" : "shadow-lg"} rounded-lg text-${color}`}>
             <h2 className={`text-3xl font-extrabold text-center`}>Add New Product</h2>
             <p className="mt-2 text-center text-sm">
@@ -54,7 +55,7 @@ export default function AddProduct() {
                       placeholder="Original Price"
                     />
                   </div>
-                  <div>
+                  {/* <div>
                     <input
                       type="number"
                       name="price.cost"
@@ -75,7 +76,7 @@ export default function AddProduct() {
                       className={`bg-${bgP} mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
                       placeholder="Discount"
                     />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 

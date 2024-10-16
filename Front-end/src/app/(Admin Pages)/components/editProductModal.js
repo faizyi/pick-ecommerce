@@ -53,7 +53,7 @@ export default function EditProductModal({showModal, handleCloseClick, handleSav
               className="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition duration-200"
               placeholder="Original Price"
             />
-            <input
+            {/* <input
               type="number"
               name="price.discount"
               value={formData.price.discount}
@@ -61,7 +61,7 @@ export default function EditProductModal({showModal, handleCloseClick, handleSav
               required
               className="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition duration-200"
               placeholder="Discount"
-            />
+            /> */}
           </div>
         </div>
 

@@ -1,5 +1,5 @@
 "use client"
-import { FaMoon, FaSun } from 'react-icons/fa';
+
 import { createSlice } from "@reduxjs/toolkit";
 
 // Retrieve initial theme from localStorage if available, otherwise use default
@@ -10,7 +10,7 @@ const getInitialTheme = () => {
 
 const initialState = {
   isDarkMode: getInitialTheme(),    // Set based on saved theme
-  theme: getInitialTheme() ? <FaSun /> : <FaMoon />,
+  theme: getInitialTheme() ? "light" : "dark",
   bg: getInitialTheme() ? "slate-950" : "slate-900",
   bgP: getInitialTheme() ? "slate-950" : "white",
   color: getInitialTheme() ? "white" : "black",
@@ -27,7 +27,7 @@ export const modeSlice = createSlice({
       localStorage.setItem('mode', JSON.stringify(state.isDarkMode));
 
       // Update theme related properties based on the current mode
-      state.theme = state.isDarkMode ? <FaSun /> : <FaMoon />;
+      state.theme = state.isDarkMode ? "light" : "dark";
       state.bg = state.isDarkMode ? "slate-950" : "slate-900";
       state.bgP = state.isDarkMode ? "slate-950" : "white";
       state.color = state.isDarkMode ? "white" : "black";

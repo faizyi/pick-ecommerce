@@ -9,16 +9,16 @@ export default function Pageslayout({ children }) {
   return (
     <Provider store={store}>
     <LayoutContent>
-      <AdminPage />
+    <AdminPage />
       <div className="">{children}</div>
-    </LayoutContent>
+  </LayoutContent>
   </Provider>
   )
 }
 
 function LayoutContent({ children }) {
-  const { bg, bgP } = useSelector((state) => state.mode);
+  const { bgP } = useSelector((state) => state.mode);
   return <div
-  className={`${bgP === "slate-950" ? "bg-slate-950 min-h-screen" : "bg-gray-200 h-screen"}`}
+  className={`${bgP === "slate-950" ? "bg-slate-950 min-h-screen" : "bg-gray-200 min-h-screen"}`}
   >{children}</div>;
 }

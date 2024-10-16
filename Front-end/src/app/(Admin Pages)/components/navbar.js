@@ -12,7 +12,7 @@ const Navbar = () => {
         setDropdownOpen(!dropdownOpen);
     };
     return (
-        <header className={`fixed top-0 z-50 w-full border-b bg-${bg} dark:border-gray-700`}>
+        <header className={`fixed top-0 z-50 w-full border-b bg-slate-950 dark:border-gray-700`}>
             <div className="px-3 py-3 lg:px-5 lg:pl-3">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center">
@@ -30,7 +30,8 @@ const Navbar = () => {
                     <div className="flex items-center gap-2">
                         <div>
                             <span onClick={() => dispatch(toogleMode())} 
-                            className="text-2xl cursor-pointer text-gray-700 dark:text-gray-300">{theme}</span>
+                            className="text-2xl cursor-pointer text-gray-700 dark:text-gray-300">
+                            {theme === "light" ? <FaMoon/> : <FaSun/>}</span>
                         </div>
                         <div className="cursor-pointer flex items-center ms-3 relative" onClick={handleClick}>
                         <p className="mr-2 font-bold text-sm text-gray-900 dark:text-white">Neil Sims</p>

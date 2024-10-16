@@ -4,7 +4,7 @@ const initialState = {
     isOpenSidebar : false
 }
 export const sidebarSlice = createSlice({
-    name: "loader",
+    name: "sidebar",
     initialState,
     reducers: {
         showSidebar: (state) => {

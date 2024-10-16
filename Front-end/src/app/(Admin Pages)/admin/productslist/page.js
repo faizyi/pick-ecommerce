@@ -2,7 +2,7 @@
 import Loader from "@/components/loader/loader";
 import useSearchHook from "@/customHooks/productHooks/useSearchHook";
 import { useSelector } from "react-redux";
-import EditProductModal from "../components/editProductModal";
+import EditProductModal from "../../components/editProductModal";
 import editProductModalHook from "@/customHooks/productHooks/editProductModalHook";
 import delProductHook from "@/customHooks/productHooks/delProductHook";
 import { FaSearch, FaEdit, FaTrash } from 'react-icons/fa';
@@ -20,8 +20,10 @@ export default function ProductsList() {
           <Loader />
         </div>
       ) : (
-        <div className={`p-6 space-y-2 bg-${bgP} text-${color} 
-        ${bgP === "slate-950" ? "border border-gray-300" : "shadow-lg"} rounded-lg w-full max-w-4xl`}>
+        <div className={`p-6 space-y-2
+        bg-${bgP} text-${color} 
+        ${bgP === "slate-950" ? "border border-gray-300" : "shadow-lg"} 
+        rounded-lg w-full max-w-4xl`}>
           <h2 className="text-2xl font-bold text-center mb-4">Product List</h2>
 
           <div className="flex justify-start mb-4">
