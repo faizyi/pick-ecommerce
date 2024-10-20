@@ -22,8 +22,8 @@ export default function editProductModalHook(updateFilteredProducts) {
         try {
           const res = await editProduct(updatedProduct, isEditProduct._id);
           if(res.status === 200){
-            const cache = await caches.open('product-cache');
-            await cache.delete("/getProducts");
+            // const cache = await caches.open('product-cache');
+            // await cache.delete("/getProducts");
             const updatedProducts = isProducts.map((product) => 
                 product._id === isEditProduct._id ? res.data.data : product
           );

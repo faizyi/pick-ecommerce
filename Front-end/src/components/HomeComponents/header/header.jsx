@@ -5,11 +5,15 @@ import HeaderDrawer from "./drawer";
 import { useState } from "react";
 import HeaderSearchBar from "./HeaderSearchBar";
 import Cart from "../cart/cart";
-
+import AuthSidebar from "../userAuth/AuthSidebar";
 export default function Header() {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const handleCart = () => {
+    setShowCart(!showCart);
+  };
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
       {showSearch ? <HeaderSearchBar setShowSearch={setShowSearch} /> : null}
@@ -24,7 +28,7 @@ export default function Header() {
           </div>
           {/* Brand Logo */}
           <Link href="/" className="text-2xl font-bold text-primary hover:text-blue-600 transition duration-300 ease-in-out">
-            MobileHub
+            TechHub
           </Link>
         </div>
         {/* Navigation Links */}
@@ -32,17 +36,14 @@ export default function Header() {
           <Link href="/" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
             Home
           </Link>
-          <Link href="/shop/products" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
-            Phones
+          <Link  href="/shop/products" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
+            Shop
           </Link>
           <Link href="#" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
-            iPhone
+            SmartPhones
           </Link>
           <Link href="#" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
-            Samsung
-          </Link>
-          <Link href="#" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
-            Vivo
+            Laptops
           </Link>
         </nav>
         {/* Icons */}
@@ -50,10 +51,10 @@ export default function Header() {
           <div onClick={() => setShowSearch(!showSearch)}>
             <FaSearch className="h-5 w-5 text-gray-600 hover:text-blue-600 transition-transform transform hover:scale-110 cursor-pointer" />
           </div>
-          <div onClick={()=>setShowCart(!showCart)}>
+          <div onClick={handleCart}>
             <FaShoppingCart className="h-5 w-5 text-gray-600 hover:text-blue-600 transition-transform transform hover:scale-110 cursor-pointer" />
           </div>
-          <div>
+          <div onClick={() => setShowForm(!showForm)}>
             <FaUserCircle className="h-5 w-5 text-gray-600 hover:text-blue-600 transition-transform transform hover:scale-110 cursor-pointer" />
           </div>
         </div>
@@ -62,6 +63,7 @@ export default function Header() {
       {/* Mobile Drawer */}
       <HeaderDrawer drawerVisible={drawerVisible} setDrawerVisible={setDrawerVisible} />
       {showCart ? <Cart showCart={showCart} setShowCart={setShowCart}/> : null }
+      {showForm ? <AuthSidebar showForm={showForm} setShowForm={setShowForm}/> : null}
     </header>
   );
 }

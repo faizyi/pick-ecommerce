@@ -14,6 +14,21 @@ const getBase64 = (file) =>
 
 export default function ProductImage({ handleImageChange }) {
   const { bgP, color } = useSelector((state) => state.mode);
+//   const [file, setFile] = useState(null);
+//   const [previewSource, setPreviewSource] = useState("");
+//   const handleFileInputChange = (e) => {
+//     const file = e.target.files[0];
+//     previewFile(file);  // Preview the image
+//     setFile(file);
+// }
+// const previewFile = (file) => {
+//   const reader = new FileReader();
+//   reader.readAsDataURL(file);
+//   reader.onloadend = () => {
+//       setPreviewSource(reader.result);  // Base64 encoded string
+//       handleImageChange(reader.result);
+//   };
+// };
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [fileList, setFileList] = useState([]);
@@ -65,6 +80,19 @@ export default function ProductImage({ handleImageChange }) {
 
   return (
     <>
+    {/* <input
+                    type="file"
+                    name="image"
+                    onChange={handleFileInputChange}
+                    accept="image/*"
+                />
+                {previewSource && (
+                <img
+                    src={previewSource}
+                    alt="chosen"
+                    style={{ height: "300px" }}
+                />
+            )} */}
       <Upload
         listType="picture-card"
         fileList={fileList}

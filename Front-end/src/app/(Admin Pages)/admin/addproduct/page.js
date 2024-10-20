@@ -109,7 +109,7 @@ export default function AddProduct() {
               <div>
                 <label className="block text-sm font-medium">Product Image</label>
                 <ProductImage handleImageChange={handleImageChange} />
-                {product.image && (
+                {/* {product.image && (
                   <div className="mt-4">
                     <img
                       src={URL.createObjectURL(product.image)}
@@ -117,7 +117,7 @@ export default function AddProduct() {
                       className="h-32 w-32 object-cover rounded-lg shadow-md"
                     />
                   </div>
-                )}
+                )} */}
               </div>
 
               <div>

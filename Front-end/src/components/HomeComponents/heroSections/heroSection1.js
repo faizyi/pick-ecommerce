@@ -7,7 +7,7 @@ export default function HeroSection1() {
         {/* Left content: Text */}
         <div className="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
           <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight tracking-wide">
-            Discover the Latest Smartphones
+            Discover the Latest Smartphones & Laptops
           </h1>
           <p className="text-lg md:text-xl font-medium leading-relaxed">
             Find your perfect mobile companion with our wide selection of cutting-edge devices.

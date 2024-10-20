@@ -6,7 +6,6 @@ import { setProducts } from '@/redux/product/productSlice';
 export default function useSearchHook() {
     const dispatch = useDispatch();
     const { allProducts, updateAllProducts } = useGetProduct();
-    const [filteredProducts, setFilteredProducts] = useState([]);
     const [query, setQuery] = useState('');
     useEffect(() => {
         if(allProducts){
@@ -32,14 +31,11 @@ export default function useSearchHook() {
             const serachProduct = allProducts ? allProducts.filter(product => product.productName.toLowerCase().includes(value.toLowerCase()))
             : [];
             dispatch(setProducts(serachProduct));
-            // setFilteredProducts(serachProduct);
         }else{
-            // setFilteredProducts(products);
             dispatch(setProducts(allProducts));
         }
     }
   return {
-    filteredProducts,
     query,
     handleSearch,
     updateFilteredProducts
