@@ -39,10 +39,10 @@ export default function Header() {
           <Link  href="/shop/products" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
             Shop
           </Link>
-          <Link href="#" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
+          <Link href={`/shop/products?category=${"smartphones"}`} className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
             SmartPhones
           </Link>
-          <Link href="#" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
+          <Link href={`/shop/products?category=${"laptops"}`} className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
             Laptops
           </Link>
         </nav>

@@ -40,9 +40,19 @@ export const delProduct = async(id) => {
     }
 }
 
-export const getProductById = async(id) => {
+export const getProductDetailsById = async(id) => {
     try {
         const res = await axiosInstance.get(`/getProductDetails/${id}`);
+        return res
+    } catch (error) {
+        return error
+    }
+}
+
+export const searchProduct = async (query)=>{
+    console.log(query)
+    try {
+        const res = await axiosInstance.get(`/searchProducts/${query}`);
         return res
     } catch (error) {
         return error

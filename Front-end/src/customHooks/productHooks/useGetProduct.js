@@ -7,22 +7,22 @@ import { setProducts } from "@/redux/product/productSlice";
 export default function useGetProduct() {
   const dispatch = useDispatch();
   const [allProducts, setAllProducts] = useState([]);
-  // const cacheKey = '/getProducts'
+  const cacheKey = '/getProducts'
   useEffect(() => {
     const fetchProduct = async () => {
       dispatch(showLoader());
       try {
-        // const cache = await caches.open('product-cache');
-        // const cacheResponse = await cache.match(cacheKey);
-        // if (cacheResponse) {
-        //   const cacheData = await cacheResponse.json();
-        //   setAllProducts(cacheData);
-        //   dispatch(setProducts(cacheData));
-        // } 
+        const cache = await caches.open('product-cache');
+        const cacheResponse = await cache.match(cacheKey);
+        if (cacheResponse) {
+          const cacheData = await cacheResponse.json();
+          setAllProducts(cacheData);
+          dispatch(setProducts(cacheData));
+        } 
         const result = await getProducts();
         if (result.status === 200) {
             const data = result.data.data;
-            // await cache.put(cacheKey, new Response(JSON.stringify(data)));
+            await cache.put(cacheKey, new Response(JSON.stringify(data)));
             setAllProducts(data);
             dispatch(hideLoader());
             // dispatch(setProducts(data));
