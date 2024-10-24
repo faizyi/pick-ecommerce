@@ -24,7 +24,7 @@ const Navbar = () => {
                         <span onClick={() => dispatch(showSidebar())}><FaBars /></span>
                         </button>
                         <a href="/addproduct" className="flex ms-2 md:me-24">
-                            <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Pick.com</span>
+                            <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">E-commerce</span>
                         </a>
                     </div>
                     <div className="flex items-center gap-2">

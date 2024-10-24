@@ -1,5 +1,7 @@
 import FeaturedProductsSection from '@/components/HomeComponents/heroSections/FeaturedProductsSection'
 import HeroSection1 from '@/components/HomeComponents/heroSections/heroSection1'
+import ShopbyCategory from '@/components/HomeComponents/heroSections/ShopbyCategory'
+import Team from '@/components/HomeComponents/heroSections/Team'
 import WhyChoose from '@/components/HomeComponents/heroSections/WhyChoose'
 export const metadata = {
   title: 'Home',
@@ -10,6 +12,8 @@ export default function page() {
     <main>
         <HeroSection1/>
         <FeaturedProductsSection/>
+        <ShopbyCategory/>
+        <Team/>
         <WhyChoose/>
     </main>
   )

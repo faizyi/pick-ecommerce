@@ -20,10 +20,10 @@ export default function ProductsList() {
           <Loader />
         </div>
       ) : (
-        <div className={`p-6 space-y-2
+        <div className={`p-4 space-y-2
         bg-${bgP} text-${color} 
         ${bgP === "slate-950" ? "border border-gray-300" : "shadow-lg"} 
-        rounded-lg w-full max-w-4xl`}>
+        rounded-lg w-full max-w-12xl`}>
           <h2 className="text-2xl font-bold text-center mb-4">Product List</h2>
 
           <div className="flex justify-start mb-4">

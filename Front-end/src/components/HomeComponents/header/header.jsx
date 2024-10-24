@@ -15,34 +15,38 @@ export default function Header() {
     setShowCart(!showCart);
   };
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
+    <header className={`border-b sticky top-0 z-50 
+    ${showSearch ? "" : "bg-opacity-90 backdrop-filter backdrop-blur-sm"} bg-white`}>
       {showSearch ? <HeaderSearchBar setShowSearch={setShowSearch} /> : null}
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          {/* Mobile Menu Icon */}
           <div className="md:hidden">
             <FaAlignLeft
-              className="h-6 w-6 cursor-pointer text-gray-700 hover:text-primary transition-transform transform hover:scale-110"
+              className="h-6 w-6 cursor-pointer text-gray-700 hover:text-primary 
+              transition-transform transform hover:scale-110"
               onClick={() => setDrawerVisible(true)}
             />
           </div>
-          {/* Brand Logo */}
-          <Link href="/" className="text-2xl font-bold text-primary hover:text-blue-600 transition duration-300 ease-in-out">
-            TechHub
+          <Link href="/" className="text-2xl font-bold text-primary
+          transition duration-300 ease-in-out">
+            My Store
           </Link>
         </div>
-        {/* Navigation Links */}
         <nav className="hidden md:flex space-x-6">
-          <Link href="/" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
+          <Link href="/" className="text-lg font-medium text-gray-600
+           hover:text-blue-600 transition duration-300 ease-in-out">
             Home
           </Link>
-          <Link  href="/shop/products" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
+          <Link  href="/shop/products" className="text-lg
+           font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
             Shop
           </Link>
-          <Link href={`/shop/products?category=${"smartphones"}`} className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
+          <Link href={`/shop/products?category=${"smartphones"}`} className="text-lg
+           font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
             SmartPhones
           </Link>
-          <Link href={`/shop/products?category=${"laptops"}`} className="text-sm font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
+          <Link href={`/shop/products?category=${"laptops"}`} className="text-lg
+           font-medium text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
             Laptops
           </Link>
         </nav>

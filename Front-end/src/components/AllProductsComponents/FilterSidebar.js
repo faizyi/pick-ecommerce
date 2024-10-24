@@ -46,7 +46,7 @@ export default function FilterSidebar({ onFilterChange }) {
   }, [selectedSubcategories, onFilterChange]);
 
   return (
-    <aside className="w-64 bg-white p-6 fixed h-screen overflow-y-auto z-50">
+    <aside className="w-64 bg-white p-6 fixed h-screen overflow-y-auto">
       <h2 className="text-xl font-semibold mb-4">Filters</h2>
 
       {categories.map((category) => (
